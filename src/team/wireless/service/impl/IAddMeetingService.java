@@ -1,7 +1,5 @@
 package team.wireless.service.impl;
 
-import team.wireless.entity.User;
-
 public interface IAddMeetingService {
 	/**
 	 * 保存文件信息到数据库
@@ -11,4 +9,11 @@ public interface IAddMeetingService {
 	 * @param fileSize 文件大小
 	 */
 	public void SaveFliePath(String upuserNum,String filename,String savepath,String fileSize);
+	
+	/**
+	 * 根据上传者用户账号生成文件保存路径
+	 * @param usernum 用户账号
+	 * @return 文件保存路径
+	 */
+	public String produceSavePath(String usernum);
 }

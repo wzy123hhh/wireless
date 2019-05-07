@@ -16,10 +16,12 @@ import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import team.wireless.service.AddMeetingService;
+
 @WebServlet("/Wireless/AddMeetingServlet")
 public class AddMeetingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+	private static AddMeetingService service = new AddMeetingService();
     public AddMeetingServlet() {
         super();
     }
@@ -28,10 +30,6 @@ public class AddMeetingServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
-		
-		System.out.println("===============");
-		System.out.println(request.getSession().getAttribute("userNum"));
 		
 		//判断表单字段是否采用文件上传方式
 		boolean ismultipartContent = ServletFileUpload.isMultipartContent(request);
@@ -52,14 +50,20 @@ public class AddMeetingServlet extends HttpServlet {
 						}
 	
 					}else {
+						//获取上传者账号
+						String upuserNum = (String) request.getSession().getAttribute("userNum");
 						//获取文件名
 						String filename = fileItem.getName();
+						//获取文件大小
+						String filesize = String.valueOf(fileItem.getSize());
 						//定义文件保存路径
-						String fileSavePath = "c://WirelessFile//";
+						String fileSavePath =service.produceSavePath(upuserNum);
 						//生成文件
 						File file = new File(fileSavePath,filename);
 						//上传到服务器
 						fileItem.write(file);
+						
+						service.SaveFliePath(upuserNum, filename, fileSavePath, filesize);
 						
 					}
 					
