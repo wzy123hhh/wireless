@@ -16,6 +16,41 @@
 	<link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/responsive.css" rel="stylesheet">
+	
+	<script type="text/javascript">
+		var ws;
+		var target="ws://localhost:8080/Wireless/demo";
+		function subopen(){
+			
+			if ('WebSocket'in window) {
+				ws = new WebSocket(target);
+				alert("Websocket");
+			}else if ('MozWebsocket'in window) {
+				ws = new MozWebsocket(target);
+				alert("MozWebsocket");
+			}else{
+				alert("不支持websocket");
+				return;	
+			}
+			   
+			
+			ws.onmessage = function(event){
+				alert("=====\\\\\"+event.data);
+			}
+			
+		} 
+		
+		
+		function sendMessage(){
+			ws.send("hello ----- hello");
+		}
+	  
+		subopen();
+		sendMessage();
+		
+		
+	</script>
+	
 </head>
 
 <body>
@@ -26,7 +61,7 @@
 		<header class="main-header">
 			<div class="container_header">
 				<div class="logo">
-					<a href="#">
+					<a href="#" onclick="sendMessage();">
 						<span class="logo-default">
 							<img src="img/logo.png" class="img-response" height="40" alt="">
 						</span>

@@ -1,5 +1,7 @@
 package team.wireless.service.impl;
 
+import java.util.ArrayList;
+
 import team.wireless.entity.User;
 
 public interface ILoginService {
@@ -25,5 +27,26 @@ public interface ILoginService {
 	 * 4 > 服务器忙
 	 */
 	public int getLoginCode(String uname,String pwd,String identity);
+	
+	/**
+	 * 获取重置密码结果
+	 * @param usernum
+	 * @param newpwd
+	 * @param tel
+	 * @return
+	 * 1 》 成功
+	 * 0 》 错误（服务器异常）
+	 * -1 》用户名不存在
+	 */
+	public int getResetPwdCode(String usernum,String newpwd,String tel);
+	
+	
+	/**
+	 * 获取用户名列表
+	 * @param sql 查询语句
+	 * @return
+	 */
+	public ArrayList<String> getUserNumList(String sql);
+	
 	
 }

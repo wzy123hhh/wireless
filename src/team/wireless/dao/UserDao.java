@@ -1,10 +1,16 @@
 package team.wireless.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.jws.soap.SOAPBinding.Use;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import team.wireless.dao.impl.IUserDao;
 import team.wireless.entity.User;
@@ -60,31 +66,65 @@ public class UserDao implements IUserDao{
 			return 4;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public int UpdateUserInfo(Object[] values, Object[] filednames, User user) {
+		String userNum = user.getUserNum();
+		StringBuilder sql = new StringBuilder();
+		 
+		//拼接SQL语句
+		sql.append("update User set "); //
+		for (int i = 0; i < filednames.length; i++) {
+			sql.append(filednames[i]+"= '"+values[i]+"' ");
+			if(i+1<filednames.length) {
+				sql.append(',');
+			}
+		}
+		sql.append("where userNum='"+userNum+"'");
+//		System.out.println(sql.toString());
+		
+		try {
+			int code = qRunner.update(sql.toString());
+			if(code !=0) {
+				return 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<User> getUserList(String sql) {
+		
+		ArrayList<User> userlist = null;
+		try {
+			userlist = (ArrayList<User>) qRunner.query(sql, new BeanListHandler<User>(User.class));
+			return userlist;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 	
 //	public void test() {
-////		User user = new User();
-////		user.setId(1);
-////		user.setUserName("wzy");
-////		user.setUserNum("2017211826");
-////		user.setUserPwd("123454");
-////		user.setUserPhone("17856002909");
-////		
-////		System.out.println(getRegisterCode(user));
+//		User user = new User();
+//		user.setId(1);
+//		user.setUserName("wzy");
+//		user.setUserNum("2017211826");
+//		user.setUserPwd("123454");
+//		user.setUserPhone("17856002909");
 //		
-//		System.out.println(UserLogin("2017211826", "123454", "student"));
+//		int code = UpdateUserInfo(new Object[] {"王智源","11111"},new Object[] {"userName","userPwd"},user);
+//		System.out.println(code);
+//		
+//		
 //	}
 //	
 //	public static void main(String[] args) {
 //		new UserDao().test();
 //	}
-//	
+//
 }

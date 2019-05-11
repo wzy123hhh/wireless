@@ -1,5 +1,7 @@
 package team.wireless.service.impl;
 
+import java.util.ArrayList;
+
 public interface IAddMeetingService {
 	/**
 	 * 保存文件信息到数据库
@@ -16,4 +18,10 @@ public interface IAddMeetingService {
 	 * @return 文件保存路径
 	 */
 	public String produceSavePath(String usernum);
+	
+	/**
+	 *  根据选择的教师编号，将文件的使用权传递给教师
+	 * @param teacherNos
+	 */
+	public void addFileOwner(ArrayList<String> teacherNos);
 }

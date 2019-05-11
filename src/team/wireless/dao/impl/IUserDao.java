@@ -1,5 +1,7 @@
 package team.wireless.dao.impl;
 
+import java.util.ArrayList;
+
 import team.wireless.entity.User;
 
 public interface IUserDao {
@@ -34,5 +36,24 @@ public interface IUserDao {
 	 * 4 > 服务器忙
 	 */
 	public int UserLogin(String uname,String pwd,String identity);
+	
+	
+	/**
+	 * 更新用户信息 
+	 * @param values  更新的值
+	 * @param filednames 更新名称
+	 * @param user 用户
+	 * @return
+	 * 1 成功
+	 * -1 失败
+	 */
+	public int UpdateUserInfo(Object[] values,Object[] filednames,User user);
+	
+	/**
+	 * 获取用户列表
+	 * @param sql 查询sql语句
+	 * @return
+	 */
+	public ArrayList<User> getUserList(String sql);
 	
 }

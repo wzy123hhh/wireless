@@ -35,6 +35,7 @@ public class AddMeetingServlet extends HttpServlet {
 		boolean ismultipartContent = ServletFileUpload.isMultipartContent(request);
 		
 		if(ismultipartContent) {
+			
 			FileItemFactory itemFactory = (FileItemFactory)new DiskFileItemFactory();
 			ServletFileUpload fileUpload = new ServletFileUpload(itemFactory);
 			
@@ -50,6 +51,7 @@ public class AddMeetingServlet extends HttpServlet {
 						}
 	
 					}else {
+						
 						//获取上传者账号
 						String upuserNum = (String) request.getSession().getAttribute("userNum");
 						//获取文件名
@@ -73,9 +75,7 @@ public class AddMeetingServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

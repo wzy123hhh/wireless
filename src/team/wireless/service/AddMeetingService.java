@@ -2,6 +2,7 @@ package team.wireless.service;
 
 import java.io.File;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import team.wireless.dao.FileDao;
 import team.wireless.service.impl.IAddMeetingService;
@@ -28,6 +29,14 @@ public class AddMeetingService implements IAddMeetingService{
 		}
 		
 		return path;
+	}
+
+
+	@Override
+	public void addFileOwner(ArrayList<String> teacherNos) {
+		
+		
+		
 	}
 	
 //	public static void main(String[] args) {

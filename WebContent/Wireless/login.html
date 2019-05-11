@@ -102,6 +102,24 @@
 				cursor: pointer;
 			}
 		</style>
+		<script type="text/javascript">
+			$(function(){
+				$(":input[name='username']").change(function(){
+					var unmae = $(this).val();
+					unmae = $.trim(unmae);
+					if (unmae !="") {
+						var url = "valiateUserName";
+						var args = {"userName":unmae,"time":new Date()};
+
+						$.post(url,args,function(data){
+							$("#message").html(data);
+						});
+
+					}
+
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<!-- 背景 -->
@@ -121,6 +139,7 @@
 		  	<div class="form-group">
 				<label>账号</label>
 			    <input type="text" class="form-control" name="username" id="username" placeholder="请输入您的账号">
+			    <div id="message"></div>
 		  	</div>
 			<div class="form-group">
 			    <label>密码</label>

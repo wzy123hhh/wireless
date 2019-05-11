@@ -1,58 +1,55 @@
 package team.wireless.Servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import team.wireless.service.LoginService;
-/**
- * 用户登录
+
+/***
+ * 登录时验证用户名是否存在
  * @author 王智源
  *
  */
-@WebServlet("/Wireless/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Wireless/valiateUserName")
+public class valiateUserName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static LoginService service = new LoginService();
-   
-    public LoginServlet() {
+       
+    public valiateUserName() {
         super();
+        
     }
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		String username = request.getParameter("username").trim();
-		String password = request.getParameter("password").trim();
-		String identity = request.getParameter("identity").trim();
+		ArrayList<String>  names= service.getUserNumList("select * from User");
 		
+		String uname = request.getParameter("userName");
+		String result = "";
+	
 		
-		int code = service.getLoginCode(username, password, identity);
-
-		
-		if(code == 1) {
-			System.out.println("登录完成");
-			//登录成功
-			HttpSession session = request.getSession();
-			//设置用户账号到session
-			session.setAttribute("userNum", username);
-			//重定向到开始界面
-			response.sendRedirect("index.html");
-			
-		}else if(code == 2) {
-			
-		}else if(code == 3) {
-			
+		if(names.contains(uname)) {
+			result = "<font color='blue'>用户名可用</font>";
 		}else {
-			
+			result = "<font color='red'>用户名不存在</font>";
 		}
+		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		response.getWriter().write(result);
 		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
