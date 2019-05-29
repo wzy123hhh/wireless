@@ -16,11 +16,14 @@ import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import team.wireless.entity.MFile;
 import team.wireless.service.AddMeetingService;
 
 @WebServlet("/Wireless/AddMeetingServlet")
+
 public class AddMeetingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	private static AddMeetingService service = new AddMeetingService();
     public AddMeetingServlet() {
         super();
@@ -40,22 +43,27 @@ public class AddMeetingServlet extends HttpServlet {
 			ServletFileUpload fileUpload = new ServletFileUpload(itemFactory);
 			
 			try {
+				
 				ArrayList<FileItem> items = (ArrayList<FileItem>) fileUpload.parseRequest((RequestContext) request);
 				
 				for(FileItem fileItem :items) {
+					
 					//判断是否普通表单字段
 					if(fileItem.isFormField()) {
+						
 						//获取字段值
 						if(fileItem.getFieldName().equals("XX")) {
 							
 						}
 	
 					}else {
-						
+					
 						//获取上传者账号
 						String upuserNum = (String) request.getSession().getAttribute("userNum");
 						//获取文件名
 						String filename = fileItem.getName();
+						//获取文件类型
+						String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
 						//获取文件大小
 						String filesize = String.valueOf(fileItem.getSize());
 						//定义文件保存路径
@@ -65,8 +73,9 @@ public class AddMeetingServlet extends HttpServlet {
 						//上传到服务器
 						fileItem.write(file);
 						
-						service.SaveFliePath(upuserNum, filename, fileSavePath, filesize);
+						MFile mFile = new MFile(upuserNum, filename, fileSavePath, filesize, filetype);
 						
+//						service.SaveFliePath(mFile);
 					}
 					
 				}

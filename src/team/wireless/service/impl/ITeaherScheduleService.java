@@ -2,8 +2,6 @@ package team.wireless.service.impl;
 
 public interface ITeaherScheduleService {
 	
-	
-	
 	/**
 	 * 获取日历信息json数据
 	 * time : 00:00:00

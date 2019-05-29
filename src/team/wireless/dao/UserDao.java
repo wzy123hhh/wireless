@@ -41,7 +41,7 @@ public class UserDao implements IUserDao{
 	public User getUserInfo(String value, String filedname) {
 		User user = null;
 		try {
-			user =qRunner.query("select * from User where ? = ?",new BeanHandler<User>(User.class), new Object[] {filedname,value});
+			user =qRunner.query("select * from User where "+filedname+" = '"+value+"'",new BeanHandler<User>(User.class));
 			return user;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,7 +124,10 @@ public class UserDao implements IUserDao{
 //	}
 //	
 //	public static void main(String[] args) {
-//		new UserDao().test();
+//		
+//		User user =new UserDao().getUserInfo("2017211826", "userNum");
+//		System.out.println(user==null);
+//		
 //	}
 //
 }

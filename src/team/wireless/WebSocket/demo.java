@@ -13,7 +13,6 @@ public class demo {
 	
 	@OnOpen
 	public void open(Session session) {
-		
 		System.out.println(session.getId());
 	}
 	
@@ -24,7 +23,6 @@ public class demo {
 	
 	@OnMessage
 	public void sendMessage(Session session,String str) {
-		
 		System.out.println(str);
 		
 		try {

@@ -1,6 +1,9 @@
+<%@page import="team.wireless.dao.UserDao"%>
+<%@page import="team.wireless.entity.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +21,6 @@
 	<link href="assets/css/responsive.css" rel="stylesheet">
 	
 	<script type="text/javascript">
-		(function() {
-	        alert("DOM还没加载哦!");
-	    })(jQuery)
 		var ws;
 		var target="ws://localhost:8080/Wireless/demo";
 		function subopen(){
@@ -56,7 +56,13 @@
 </head>
 
 <body>
-
+	<%
+		HttpSession session1 = request.getSession();
+		String usernum =(String)session1.getAttribute("userNum");
+		UserDao dao = new UserDao();
+		User user = dao.getUserInfo(usernum, "userNum");
+		String name = user.getUserName();
+	%>
 
 	<div class="wrapper">
 		<!-- header -->
@@ -111,7 +117,7 @@
 									<ul class="dropdown-menu scroll_auto height_fixed" aria-labelledby="dropdownMenu1">
 										<li class="bigger">
 											<h3>
-												<span class="bold">Notifications</span>
+												<span class="bold">通知</span>
 											</h3>
 											<span class="notification-label">New 1</span>
 										</li>
@@ -143,7 +149,7 @@
 								<div class="dropdown dropdown-user">
 									<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
 										<img class="img-circle pro_pic" src="" alt="">
-										<span class="username">XXX</span>
+										<span class="username"><%=name %></span>
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-default">
@@ -174,7 +180,7 @@
 					</div>
 					<div class="info">
 						<p>
-							管理员XXX
+							管理员<%=name %>
 						</p>
 					</div>
 				</div>

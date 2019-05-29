@@ -3,6 +3,8 @@ package team.wireless.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import team.wireless.entity.Meeting;
+
 public interface IMeetingDao {
 
 	/**
@@ -19,6 +21,11 @@ public interface IMeetingDao {
 	 */
 	public List<Object> getMeetingNoList(String userNo);
 	
-
+	/**
+	 * 添加会议信息
+	 * @param meeting
+	 * @return 返回自增编号
+	 */
+	public String addMeetingInfo(Meeting meeting);
 	
 }

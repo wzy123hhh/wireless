@@ -14,8 +14,6 @@ public class messagetest implements ServerApplicationConfig{
 	@Override
 	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scaner) {
 		
-		System.out.println("*%%%%%%%%%%%%%%%%%%%*"+scaner.size());
-		
 		return scaner;
 	}
 

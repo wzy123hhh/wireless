@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import team.wireless.service.LoginService;
 /**
  * 用户登录
@@ -25,30 +27,38 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		String username = request.getParameter("username").trim();
-		String password = request.getParameter("password").trim();
+		String username = request.getParameter("usernum").trim();
+		String password = request.getParameter("pwd").trim();
 		String identity = request.getParameter("identity").trim();
 		
-		
 		int code = service.getLoginCode(username, password, identity);
-
+		System.out.println("code = "+code);
 		
 		if(code == 1) {
-			System.out.println("登录完成");
+			
+			response.getWriter().print("success");
 			//登录成功
 			HttpSession session = request.getSession();
 			//设置用户账号到session
 			session.setAttribute("userNum", username);
 			//重定向到开始界面
-			response.sendRedirect("index.html");
+//			response.sendRedirect("index.html");
+			
+			System.out.println("重定向");
 			
 		}else if(code == 2) {
 			
+			response.getWriter().print("密码错误");
+			
 		}else if(code == 3) {
 			
-		}else {
+			response.getWriter().println("用户名不存在");
 			
+		}else {
+			response.getWriter().println("服务器忙，请稍后再试");
 		}
 		
 	}

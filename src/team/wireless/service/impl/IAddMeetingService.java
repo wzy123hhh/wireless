@@ -2,15 +2,16 @@ package team.wireless.service.impl;
 
 import java.util.ArrayList;
 
+import team.wireless.entity.MFile;
+import team.wireless.entity.Meeting;
+
 public interface IAddMeetingService {
+
 	/**
 	 * 保存文件信息到数据库
-	 * @param upuserNum 上传者的用户账号
-	 * @param filename 保存的文件名
-	 * @param savepath 保存的路径
-	 * @param fileSize 文件大小
+	 * @param file
 	 */
-	public void SaveFliePath(String upuserNum,String filename,String savepath,String fileSize);
+	public void SaveFliePath(MFile file,String meetingno);
 	
 	/**
 	 * 根据上传者用户账号生成文件保存路径
@@ -23,5 +24,12 @@ public interface IAddMeetingService {
 	 *  根据选择的教师编号，将文件的使用权传递给教师
 	 * @param teacherNos
 	 */
-	public void addFileOwner(ArrayList<String> teacherNos);
+	public void addFileOwner(ArrayList<String> teacherNos,ArrayList<String> saveNo);
+	
+	/**
+	 * 添加会议信息
+	 * @param meeting
+	 * @return
+	 */
+	public String addMeetingInfo(Meeting meeting);
 }
