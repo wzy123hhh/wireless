@@ -1,7 +1,7 @@
 
 'use strict';
 $(document).ready(function() {
-	var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var MONTHS = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
     var config = {
         type: 'line',
         data: {
@@ -69,15 +69,14 @@ $(document).ready(function() {
         }
     };
     var ctx = document.getElementById("chartjs_line").getContext("2d");
-    window.myLine = new Chart(ctx, config);
-	});
-        
-      
+    window.myLine = new Chart(ctx, config); 
+    });
+
 $(document).ready(function() {
 	var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
+       
     };
-
     var config = {
         type: 'pie',
     data: {
@@ -99,11 +98,11 @@ $(document).ready(function() {
             label: 'Dataset 1'
         }],
         labels: [
-            "USA",
-            "Canada",
-            "Indai",
-            "China",
-            "Russia"
+            "缺勤",
+            "迟到",
+            "请假",
+            "早退",
+            "到达"
         ]
     },
     options: {

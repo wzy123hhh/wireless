@@ -7,10 +7,33 @@ public class User {
 	private String userPwd;
 	private String userPhone;
 	private String userImg;
-	
 	private String identity;
 	private String Mac;
+	private int collageNo;
 	
+	
+	
+	public int getCollageNo() {
+		return collageNo;
+	}
+
+	public void setCollageNo(int collageNo) {
+		this.collageNo = collageNo;
+	}
+
+	public User(int id, String userName, String userNum,  String userPhone, String userImg,
+			String identity, String mac,int collageNo) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.userNum = userNum;
+		this.userPhone = userPhone;
+		this.userImg = userImg;
+		this.identity = identity;
+		this.Mac = mac;
+		this.collageNo = collageNo;
+	}
+
 	public User(Integer id ,String userName, String userNum, String userPwd, String userPhone, String userImg) {
 		super();
 		this.id = id;

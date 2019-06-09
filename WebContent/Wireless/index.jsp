@@ -20,48 +20,24 @@
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/responsive.css" rel="stylesheet">
 	
-	<script type="text/javascript">
-		var ws;
-		var target="ws://localhost:8080/Wireless/demo";
-		function subopen(){
-			
-			if ('WebSocket'in window) {
-				ws = new WebSocket(target);
-				alert("Websocket");
-			}else if ('MozWebsocket'in window) {
-				ws = new MozWebsocket(target);
-				alert("MozWebsocket");
-			}else{
-				alert("不支持websocket");
-				return;	
-			}
-			   
-			ws.onmessage = function(event){
-				alert("=====\\\\\"+event.data);
-			}
-			
-		} 
-		
-		
-		function sendMessage(){
-			ws.send("hello ----- hello");
-		}
-	  
-		subopen();
-		sendMessage();
-		
-		
-	</script>
-	
 </head>
 
 <body>
 	<%
+	    String name = "";
 		HttpSession session1 = request.getSession();
 		String usernum =(String)session1.getAttribute("userNum");
-		UserDao dao = new UserDao();
-		User user = dao.getUserInfo(usernum, "userNum");
-		String name = user.getUserName();
+		
+		if (usernum == null) {
+	%>
+		alert("请先登录");
+	<%
+		}else{
+			
+			UserDao dao = new UserDao();
+			User user = dao.getUserInfo(usernum, "userNum");
+			name = user.getUserName();
+		}
 	%>
 
 	<div class="wrapper">
@@ -332,7 +308,7 @@
 											<div class="drak_blue">
 												<h1>24</h1>
 												<div class="middle_text">
-													<span>3 Meetings</span>
+													<span>3 次会议</span>
 													<p>
 														周三
 														<i class="fontello-record"></i>April 2019

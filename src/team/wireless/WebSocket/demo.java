@@ -9,6 +9,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/demo")
+
 public class demo {
 	
 	@OnOpen
@@ -27,6 +28,7 @@ public class demo {
 		
 		try {
 			session.getBasicRemote().sendText("hello");
+			System.out.println("发送数据");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

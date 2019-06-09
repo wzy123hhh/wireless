@@ -3,6 +3,7 @@ package team.wireless.entity;
 import java.sql.Timestamp;
 
 public class Meeting {
+	
 	private String meetingNo;
 	private String Address;
 	private Timestamp startTime;
@@ -10,6 +11,7 @@ public class Meeting {
 	private int saveno;
 	private String meetingName;
 	private String meetingIntroduce;
+	private String createrNo;
 	
 	
 	
@@ -18,7 +20,7 @@ public class Meeting {
 		// TODO Auto-generated constructor stub
 	}
 	public Meeting(String meetingNo, String address, Timestamp startTime, int laterTime, int saveno, String meetingName,
-			String meetingIntroduce) {
+			String meetingIntroduce,String createrNo) {
 		super();
 		this.meetingNo = meetingNo;
 		Address = address;
@@ -27,6 +29,7 @@ public class Meeting {
 		this.saveno = saveno;
 		this.meetingName = meetingName;
 		this.meetingIntroduce = meetingIntroduce;
+		this.createrNo = createrNo;
 	}
 	
 	public Meeting(String address, Timestamp startTime, String meetingName, String meetingIntroduce) {
@@ -34,6 +37,13 @@ public class Meeting {
 		Address = address;
 		this.startTime = startTime;
 		this.meetingName = meetingName;
+	}
+	
+	public String getCreaterNo() {
+		return createrNo;
+	}
+	public void setCreaterNo(String createrNo) {
+		this.createrNo = createrNo;
 	}
 	public String getMeetingNo() {
 		return meetingNo;

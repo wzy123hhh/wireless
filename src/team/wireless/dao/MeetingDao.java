@@ -8,12 +8,16 @@ import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import team.wireless.dao.impl.IMeetingDao;
 import team.wireless.entity.Meeting;
+import team.wireless.entity.meetingRecord;
 import team.wireless.util.SqlUtil;
 
 public class MeetingDao implements IMeetingDao{
@@ -74,11 +78,51 @@ public class MeetingDao implements IMeetingDao{
 		return null;
 	}
 	
+	
+	
 	public static void main(String[] args) {
 		
 //		new MeetingDao().getMeetingNoList("2017211826");
-		new MeetingDao().addMeetingInfo(new Meeting("yf3", new Timestamp(System.currentTimeMillis()), "test", "testmeeting"));
+//		new MeetingDao().addMeetingInfo(new Meeting("yf3", new Timestamp(System.currentTimeMillis()), "test", "testmeeting"));
+//		new MeetingDao().getMeetingRecordData("select teacherNo from meetingrecord where meetingNo = '10001'");
+//		new MeetingDao().getoneValue("select startTime from meeting where meetingNo='10001'");
 		
+	}
+
+
+	@Override
+	public List<meetingRecord> getMeetingRecordData(String sql) {
+		List<meetingRecord> lists = null;
+		try {
+			lists= queryRunner.query(sql, new BeanListHandler<>(meetingRecord.class));
+			
+			return lists;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public Object getoneValue(String sql) {
+		Object obj = null;
+		try {
+			obj=queryRunner.query(sql, new ScalarHandler<Object>() );
+//			System.out.println(obj);
+			return obj;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	@Override
+	public QueryRunner getQuery() {
+		
+		return queryRunner;
 	}
 
 }

@@ -3,7 +3,10 @@ package team.wireless.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.dbutils.QueryRunner;
+
 import team.wireless.entity.Meeting;
+import team.wireless.entity.meetingRecord;
 
 public interface IMeetingDao {
 
@@ -27,5 +30,29 @@ public interface IMeetingDao {
 	 * @return 返回自增编号
 	 */
 	public String addMeetingInfo(Meeting meeting);
+	
+	/**
+	 * 获取一列数据
+	 * @param sql
+	 * @return
+	 */
+	public List<meetingRecord> getMeetingRecordData(String sql);
+	
+	/**
+	 * 获取一个值
+	 * @param sql
+	 * @return
+	 */
+	public Object getoneValue(String sql);
+	
+	/**
+	 * 获取QueryRunner对象
+	 * @return
+	 */
+	public QueryRunner getQuery();
+	
+	
+	
+	
 	
 }

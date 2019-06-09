@@ -19,77 +19,100 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet">
     <style>
-        #con{
-                width: 1000px;
-                min-height: 200px;
-                background-color: white;
-                border-radius: 10px;
-                margin: 10px auto;
-                box-shadow: 0 0 15px rgba(122,122,122,0.6);
-            }
-            
-            #top{
-                width: 90%;
-                height: 45%;
-                margin: 0 auto;
-                border: 1px solid transparent;
-            }
-            
-            #top span{
-                display: inline-block;
-                border: 1px solid RGB(252,94,94);
-                color:RGB(252,94,94);
-                padding: 0px 10px;
-                height: 30px;
-                margin: 15px;
-                line-height: 30px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            
-            #top span.active{
-                box-shadow: 0 0 10px rgba(36,36,36,0.3);
-                background-color: RGB(58,134,255);
-                color: white;
-                border: 0;
-                height: 40px;
-                line-height: 40px;
-                
-            }
-            
-            #done{
-                border: 0;
-                margin-left: 5%;
-                margin-bottom: 10px;
-                margin-top: 10px;
-                padding: 10px;
-                color: black;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            
-            
-            #bottom{
-                height: 45%;
-                width: 90%;
-                border: 1px solid transparent;
-                margin: 0 auto;
-                margin-top: 15px;
-            }
-            
-            .my{
-                display: inline-block;
-                border: 1px solid rgb(108,232,114);
-                color:rgb(108,232,114);
-                padding: 0px 10px;
-                height: 30px;
-                margin: 15px;
-                line-height: 30px;
-                border-radius: 5px;
-                cursor: pointer;
-                
-            }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+        }
+        .form-group{
+            padding: 20px;
+        }
+        .select-content{
+            list-style: none;
 
+        }
+        .select-row {
+            width: 30%;
+            height: 42px;
+            background: #ffffff;
+            border-radius: 14px;
+            margin-top: 10px;
+            float: left;
+        }
+        input[type="search"]{
+            position: absolute;
+            width: 30%;
+            outline: none;
+            right: 15%;
+            border: 2px solid purple;
+            border-radius: 5px;
+        }
+        
+        .lable-title {
+            display: inline-block;
+            line-height: 40px;
+            padding: 0 10px 0 10px;
+            color: purple;
+
+        }
+
+       
+        .cont-sel {
+            display: inline-block;
+            width: 70%;
+            height: 100%;
+            color: #3a3838;
+        }
+
+        select {
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            border-color: purple;
+        }
+        .search-result{
+            width: 84%;
+            margin: 0 auto;
+            height:200px;
+            overflow: auto;
+            border-radius: 5px;
+            border: 1px solid #ccc; 
+        }
+        .search-result ul li{
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+        .selected-result{
+            width: 84%;
+            margin: 0 auto;
+            height:200px;
+            overflow: auto;
+            border-radius: 5px;
+            border: 1px solid #ccc; 
+        }
+        .selected-result ul li{
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+        .btn-add,.btn-del{
+            position: absolute;
+            right: 10px;
+            top: 2px;
+        }
+        .search-result ul li,.selected-result ul li{
+            position: relative;
+            text-indent: 2em;
+            line-height: 40px;
+        }
     </style>
 </head>
 
@@ -121,14 +144,7 @@
                                         aria-expanded="false">
                                         <i class=" icon-magnifier"></i>
                                     </a>
-                                    <form id="search_form" role="search" class="search-form collapse" action="#">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search...">
-                                            <button type="button" class="btn" data-target="#search_form" data-toggle="collapse" aria-label="Close">
-                                                <i class="ion-android-search"></i>
-                                            </button>
-                                        </div>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>
@@ -237,6 +253,9 @@
                             <li>
                                 <a href="calendar_meeting.html">会议日程</a>
                             </li>
+                            <li>
+                                <a href="calendar_meeting.html">更多</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="menu_sub">
@@ -248,6 +267,9 @@
                         <ul class="down_menu">
                             <li>
                                 <a href="form-basic-input.html">短信通知</a>
+                            </li>
+                            <li>
+                                <a href=".html">请假审批</a>
                             </li>
                             <li class="menu_sub">
                                 <a href="meeting_add.html">添加会议
@@ -305,6 +327,9 @@
                         </a>
                         <ul class="down_menu">
                             <li>
+                                <a href="flot-chart.html">学科预警</a>
+                            </li>
+                            <li>
                                 <a href="flot-chart.html">当天/本周考勤情况</a>
                             </li>
                             <li>
@@ -312,37 +337,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu_sub">
-                        <a href="#">
-                            <i class="fa fa-file text-aqua"></i>
-                            <span>应急定位</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="down_menu">
-                            <li>
-                                <a href="profile.html">User Profile</a>
-                            </li>
-                            <li>
-                                <a href="page-login.html">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="page-register.html">Sign Up</a>
-                            </li>
-                            <li>
-                                <a href="invoice.html">Invoice</a>
-                            </li>
-                            <li>
-                                <a href="page_404.html">404</a>
-                            </li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </div>
                         <!--main contents start-->
             <main class="content_wrapper">
                 <!--page title start-->
                 <div class="page-heading">
-                    <div class="container-fluid">
+                    <div class="container">
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6">
                                 <div class="page-breadcrumb">
@@ -379,87 +381,77 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form action="" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="">会议主题</label>
                                             <input type="text" class="form-control" id="" aria-describedby="" >
                                         </div>
                                         <div class="form-group">
+                                            <label for="">会议日期：</label>
+                                            <input id="date-select" type="text" readonly onclick="laydate()" />
+                                            <label for="">具体时间：</label>
+                                            <input id="time-select" type="text" readonly onclick="laydate()" />
+                                            <label for="">地点：</label>
+                                            <input id="meeting-place" type="text" />
+                                        </div>
+                                        <div class="form-group">
                                                 <label for="">选择会议参与人员</label>
+                                                    <hr>
+                                                    <ul class="select-content">
+                                                        <li class="select-row">
+                                                            <p class="lable-title">学校</p>
+                                                            <div class="cont-sel">
+                                                                <select name="school" id="school"></select>
+                                                            </div>
+                                                        </li>
 
-                                                    <div id="con">
+                                                        <li class="select-row">
+                                                            <p class="lable-title">机构</p>
+                                                            <div class="cont-sel">
+                                                                <select name="major" id="major"></select>
+                                                            </div>
+                                                        </li>
 
-                                                        <div id="top" class="son" data-age='20' name='zds'>
-                                                            <h3 style="margin-top: 10px;">参考人员如下</h3>
-                                                            <span class="">鸣人</span>
-                                                            <span>卡卡西</span>
-                                                            <span>鼬</span>
-                                                            <span>鬼鲛</span>
-                                                            
-                                                            
-                                                           
-                                                        </div>
-
-                                                        <div id="bottom">
-                                                            <h3>已选择参与会议人员如下</h3>
-                                                            <hr>
-                                                        </div>
-                                                    </div> 
-                                                    <script>
-                                                        window.onload=function(){
-                                                            
-                                                            var top=document.getElementById("top");
-                                                            var bottom=document.getElementById("bottom");
-                                                            var spans=top.getElementsByTagName("span");
-                                                            var arr=[];
-                                                            var done=document.getElementById("done");
-                                                            for(var i=0;i<spans.length;i++){
-                                                                spans[i].onclick=function(){                        
-                                                                    this.className='active';
-                                                                    arr.push(this.innerHTML);
-                                                                    //console.log(arr);
-                                                                    for(var j=0;j<arr.length;j++){
-                                                                        var mySpan=document.createElement("span");
-                                                                        mySpan.innerHTML=arr[j];    
-                                                                        mySpan.className='my';
-                                                                    }                       
-                                                                    if(bottom.children[1]){
-                                                                        bottom.insertBefore(mySpan,bottom.children[1]);
-                                                                    }else{
-                                                                        bottom.appendChild(mySpan)
-                                                                    }
-                                                                                                            
-                                                                }
-                                                                
-                                                                
-                                                            }
-                                                        }
-                                                    </script>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">注意事项</label>
-                                            <input type="text" class="form-control" id="">
+                                                        <li class="select-row">
+                                                            <p class="lable-title">院部</p>
+                                                            <div class="cont-sel">
+                                                                <select name="direction" id="direction"></select>
+                                                            </div>
+                                                        </li>
+                                                        
+                                                        
+                                                    </ul>
+                                                    <button type="" class="btn" style="background-color: #fff;border:1px solid purple;color:purple;position: relative;top: 14px;">查询</button>
+                                                    </div>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary" style="color: #fff">添加</button>
-                                    </form>
-                                    <form>
+                                    
+                                    <!-- 可选人 -->
+                                    <div class="search-result">
+                                        <ul class="collage">
+                                            <li>无<button type="button" class="btn btn-add">添加</button></li>
+                    
+                                        </ul>
+                                    </div>
+                                    <p style="text-indent: 4em;font-size: 1.2em">已选老师</p>
+                                    <!-- 已选人 -->
+                                    <div class="selected-result">
+                                        <ul>
+                                            <li>已选老师<button class="btn btn-del" type="button">删除</button></li>
+                                            <li>已选老师<button class="btn btn-del" type="button">删除</button></li>
+                                            
+                                        </ul>
+                                    </div>
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">会议资料目标备份邮箱</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                                        </div>
-                                        
-                                       
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">其他备注</label>
+                                            <label for="exampleFormControlTextarea1">注意事项</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
-                                    </form>
-                                    <form>
+                                    
                                         <div class="form-group">
                                             <label for="exampleFormControlFile1">实时资料发布</label>
-                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                        </div>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1"><br>
+                                            <button type="submit" class="btn btn-primary" style="color: #fff">添加</button>
+                                        </div>      
                                     </form>
                                 </div>
                             </div>
@@ -467,7 +459,6 @@
                     </div>
                 </div>
             </main>
-
         </div>
         <!-- Content_right_End -->
         <!-- Footer -->
@@ -488,7 +479,153 @@
         </footer>
         <!-- Footer_End -->
     </div>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script src="./layDate/laydate/laydate.js"></script>
 
+    <script>
+        laydate.render({
+          elem: '#date-select'
+          ,type: 'date'
+        });
+        laydate.render({
+          elem: '#time-select'
+          ,type: 'time'
+        });
+    </script>
+    <script>
+        var btnAdd = document.querySelectorAll('.btn-add');
+        var btnDel = document.querySelectorAll('.btn-del');
+        var listNode = document.querySelector('.selected-result ul');
+        var delBtnLen = btnDel.length;
+       
+            deleteEle();
+            
+            btnAdd.forEach(function(item){
+
+                item.onclick = function(){
+                    
+                    // var conTeacher = item.parentElement.innerText;
+                    // console.log(conTeacher)
+                    var newList = '<li>已选老师<button class="btn btn-del">删除</button></li>';
+                    listNode.innerHTML += newList;
+                    alert('已成功添加');
+                    btnAdd = document.querySelectorAll('.btn-add');
+                    btnDel = document.querySelectorAll('.btn-del');
+                    listNode = document.querySelector('.selected-result ul');
+                    
+                    btnDel = document.querySelectorAll('.btn-del');
+                    delBtnLen = btnDel.length;
+
+                deleteEle();
+                }
+
+            });
+            
+        //删除元素
+        function deleteEle(){
+            for(let i = 0;i < delBtnLen; i++){
+                btnDel[i].onclick = function() {
+                    var isDel = confirm('是否删除');
+                    if(isDel==true){
+                        this.parentElement.remove();
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+
+    </script>
+    <script>
+        var school = [["00", "木叶村"], ["01", "砂隐村"], ["02", "土隐村"]];
+        var majors = { "00": [["000", "信息学院"],["001","地信学院"]], "01":[["001", "地信学院"]],"02":[["002", "经管学院"]]};
+        var directions = {
+    "000": [[0, 0, "软件工程"],[0,0,"通信工程"]], "001": [[1, 0, "测绘"], [1, 0, "园林"]], "002": [[0, 0, "工商管理"], [1, 0, "财务管理"]]};
+        // var teachers = {}
+
+
+    (function () {
+            var schoolNode = $('#school'),
+                majorNode = $('#major'),
+                directionNode = $('#direction');
+            //学校
+            var schoolArr = '',
+                selectPstr = '';
+            for (var i = 0, len = school.length; i < len; i++) {
+                // selectPstr += school[i][0]   school[i][1] 
+                selectPstr += "<option value = " + school[i][0] + ">" + school[i][1] + "</option>";
+            }
+            // console.log(selectPstr);
+            schoolNode.html(selectPstr);
+
+            //院部
+            // console.log(typeof schoolNode.val());
+            var majorArr = majors[schoolNode.val()],
+                selectCstr = '';
+            console.log(majorArr);
+            for (var i = 0, len = majorArr.length; i < len; i++) {
+                selectCstr += "<option value = " + majorArr[i][0] + ">" + majorArr[i][1] + "</option>";
+            }
+            selectCstr += "<option value = '9999'>其他</option>";
+            majorNode.html(selectCstr);
+
+            //专业
+            var directionArr = directions[majorNode.val()],
+                selectSstr = '';
+            for (var i = 0, len = directionArr.length; i < len; i++) {
+                selectSstr += "<option >" + directionArr[i][2] + "</option>";
+            }
+            selectSstr += "<option value = '9999'>其他</option>";
+            directionNode.html(selectSstr);
+
+
+
+            
+            schoolNode.change(function () {
+                var schoolCurrent = schoolNode.val(),
+                    majorArr = majors[schoolCurrent],
+                    selectCstr = '';
+                for (var i = 0, len = majorArr.length; i < len; i++) {
+                    selectCstr += "<option value = " + majorArr[i][0] + ">" + majorArr[i][1] + "</option>";
+                }
+                selectCstr += "<option value = '9999'>其他</option>";
+                majorNode.html(selectCstr);
+
+                    directionArr = directions[majorNode.val()],
+                    selectSstr = '';
+                if (directionArr) {
+                    for (var i = 0, len = directionArr.length; i < len; i++) {
+                        selectSstr += "<option>" + directionArr[i][2] + "</option>";
+                    }
+                    selectSstr += "<option value = '9999'>其他</option>";
+                    directionNode.html(selectSstr);
+                }
+
+
+            })
+
+
+            
+            majorNode.change(function () {
+
+                directionArr = directions[majorNode.val()],
+                    selectSstr = '';
+                if (directionArr) {
+                    for (var i = 0, len = directionArr.length; i < len; i++) {
+                        selectSstr += "<option>" + directionArr[i][2] + "</option>";
+                    }
+                    selectSstr += "<option value = '9999'>其他</option>";
+                    directionNode.html(selectSstr);
+                }else{
+                    selectSstr = "<option value = '9999'>其他</option>";
+                    directionNode.html(selectSstr);
+                }
+            })
+        })()
+    </script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
@@ -505,7 +642,6 @@
             }, false);
         })();
     </script>
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/popper.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>

@@ -16,43 +16,6 @@
 	<link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/responsive.css" rel="stylesheet">
-	
-	<script type="text/javascript">
-		(function() {
-	        alert("DOM还没加载哦!");
-	    })(jQuery)
-		var ws;
-		var target="ws://localhost:8080/Wireless/demo";
-		function subopen(){
-			
-			if ('WebSocket'in window) {
-				ws = new WebSocket(target);
-				alert("Websocket");
-			}else if ('MozWebsocket'in window) {
-				ws = new MozWebsocket(target);
-				alert("MozWebsocket");
-			}else{
-				alert("不支持websocket");
-				return;	
-			}
-			   
-			ws.onmessage = function(event){
-				alert("=====\\\\\"+event.data);
-			}
-			
-		} 
-		
-		
-		function sendMessage(){
-			ws.send("hello ----- hello");
-		}
-	  
-		subopen();
-		sendMessage();
-		
-		
-	</script>
-	
 </head>
 
 <body>
@@ -502,6 +465,8 @@
 	<script src="assets/js/utils.js"></script>
 
 	<script src="assets/js/chart.js"></script>
+	<script type="text/javascript" src="assets/js/websocket.js"></script>
+	<script type="text/javascript" src="assets/js/index.js"></script>
 	<script type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
 	<script src="assets/js/custom.js" type="text/javascript"></script>
 </body>
