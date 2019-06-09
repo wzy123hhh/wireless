@@ -43,9 +43,6 @@ public class TeacherScheduleService implements ITeaherScheduleService{
 		}
 		return null;
 	}
-
-	
-
 	
 	@Override
 	public String getScheduleJson(String num) {
@@ -68,24 +65,21 @@ public class TeacherScheduleService implements ITeaherScheduleService{
 				meetlist.addAll(teMaps);
 			}
 			
-			
 			result = mapper.writeValueAsString(meetlist);
+			System.out.println(result);
 			return result;
 			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
-
-
 	
-//	public static void main(String[] args) {
-//		TeacherScheduleService scheduleService = new TeacherScheduleService();
+	public static void main(String[] args) {
+		TeacherScheduleService scheduleService = new TeacherScheduleService();
 //		scheduleService.getCalendarJson("select * from Meeting");
-//		scheduleService.getScheduleJson("2017211826");
-//	}
+		scheduleService.getScheduleJson("2017211826");
+	}
 	
 	
 }
